@@ -107,6 +107,8 @@ function renderError(msg: string): void {
 async function init(): Promise<void> {
   const grid = document.getElementById('projects-grid')!
   const countEl = document.getElementById('project-count')!
+  const appGrid = document.getElementById('app-grid')!
+  const appCount = document.getElementById('app-count')!
 
   // stagger skeleton fade-in
   grid.innerHTML = Array.from({ length: 6 }, () =>
@@ -135,6 +137,13 @@ async function init(): Promise<void> {
     card.classList.add('card--enter')
     grid.appendChild(card)
   })
+
+  appGrid.innerHTML = ''
+  apps.forEach(app => {
+    appGrid.appendChild(buildAppCard(app))
+  })
+
+  appCount.textContent = `${apps.length} apps`
 }
 
 init()
