@@ -303,7 +303,7 @@ footer {
   letter-spacing: 0.04em;
 }
 
-.Search {
+.Search input[type=text] {
   border: none;
   font-family: var(--moono);
   font-size: 0.68rem;
