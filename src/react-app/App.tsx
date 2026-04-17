@@ -5,7 +5,6 @@ function App() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<>
 			<h1>Demo Vite Website Through Cloudflare</h1>
 			<div className="card">
 				<button
@@ -15,7 +14,6 @@ function App() {
 					count is {count}
 				</button>
 			</div>
-		</>
 	);
 }
 
