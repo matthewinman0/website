@@ -7,7 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "index.html",
-        si: "apps/si-downloader/map.html"
+        si: "apps/mapgen/index.html"
       }
     }
   }
