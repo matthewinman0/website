@@ -7,18 +7,18 @@ const searchInput = document.getElementById('Search') as HTMLInputElement
 const USERNAME = 'matthewinman0'
 
 function buildCard(repo: GitHubRepo): HTMLElement {
-  const card = document.createElement('article')
-  card.className = 'card'
-
-  const nameRow = document.createElement('div')
-  nameRow.className = 'card-name-row'
-
   const name = document.createElement('a')
   name.className = 'card-name'
   name.href = repo.html_url
   name.target = '_blank'
   name.rel = 'noopener noreferrer'
   name.textContent = repo.name.replace(/-/g, '-\u200B') // allow wrapping on hyphens
+
+  const card = document.createElement('article')
+  card.className = 'card'
+
+  const nameRow = document.createElement('div')
+  nameRow.className = 'card-name-row'
 
   const arrow = document.createElement('span')
   arrow.className = 'card-arrow'
@@ -70,14 +70,13 @@ function buildCard(repo: GitHubRepo): HTMLElement {
 }
 
 function buildAppCard(app: WebApp): HTMLElement {
+  const name = document.createElement('a')
+  name.className = 'card-name'
+  name.textContent = app.name
+
   const card = document.createElement('article')
   card.className = 'card'
   card.href = app.url
-
-  const name = document.createElement('a')
-  name.className = 'card-name'
-  name.href = app.url
-  name.textContent = app.name
 
   const desc = document.createElement('p')
   desc.className = 'card-desc'
