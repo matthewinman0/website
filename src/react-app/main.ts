@@ -72,6 +72,7 @@ function buildCard(repo: GitHubRepo): HTMLElement {
 function buildAppCard(app: WebApp): HTMLElement {
   const card = document.createElement('article')
   card.className = 'card'
+  card.href = app.url
 
   const name = document.createElement('a')
   name.className = 'card-name'
