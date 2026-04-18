@@ -1,3 +1,4 @@
+import '...src/react-app/style.css'
 const app = document.getElementById('app')!
 
 app.innerHTML = `
