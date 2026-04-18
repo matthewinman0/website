@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "index.html",
-        mapgen: "apps/mapgen/index.html"
+        mapgen: "src/react-app/apps/mapgen/index.html"
       }
     }
   }
