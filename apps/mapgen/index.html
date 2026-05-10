@@ -1,35 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Matthew Inman — developer. Projects and open source work." />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>" />
-    <title>Mapgen</title>
-  </head>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Open-Street O-Map</title>
+
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+<style>
+  body { margin: 0; }
+  #map { width: 100vw; height: 100vh; }
+
+  #toggle3d {
+    position: absolute;
+    z-index: 1;
+    top: 110px;
+    right: 10px;
+    padding: 6px;
+    font-weight: 600;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.1);
+    cursor: pointer;
+  }
+</style>
+</head>
+
 <body>
-  <div class="wrapper">
-    <header>
-      <div class="header-inner">
-        <h1 class="site-name">Matthew <em>Inman</em></h1>
-        <div class="Search">
-          <input type="text" placeholder="Search.." id="Search">
-        </div>
-        <span class="header-meta">Built it because I could</span>
-        <button class="settings-btn" aria-label="Settings"><img height="17px" width="17px" src="../../public/setting.png" class="settings-icon"></button>
-      </div>
-    </header>
 
-    <a href="/"><h2>← Back</h2></a>
+<div id="map"></div>
+<button id="toggle3d">3D</button>
 
-    <footer>
-      <div class="footer-inner">
-        <a href="https://github.com/matthewinman0" target="_blank" rel="noopener">GitHub ↗</a>
-        <span class="footer-copy">© 2025 Matthew Inman</span>
-      </div>
-    </footer>
+<script>
+let is3D = true;
 
-  </div>
-  <script type="module" src="./mapgen.ts"></script>
+const map = new maplibregl.Map({
+  container: "map",
+  style: "./style.json",
+  center: [-3.9642, 56.1884],
+  zoom: 14
+});
+
+// ✅ toggle logic
+function updateButton() {
+  document.getElementById("toggle3d").innerText = is3D ? "3D" : "2D";
+}
+
+function toggleBuildings() {
+  is3D = !is3D;
+
+  map.setLayoutProperty(
+    "buildings-3d",
+    "visibility",
+    is3D ? "visible" : "none"
+  );
+
+  map.setLayoutProperty(
+    "buildings-2d",
+    "visibility",
+    is3D ? "none" : "visible"
+  );
+
+  updateButton();
+}
+
+// attach click
+document.getElementById("toggle3d").onclick = toggleBuildings;
+
+// initial label
+updateButton();
+
+map.on("load", () => {
+
+  map.addControl(new maplibregl.NavigationControl());
+
+});
+</script>
+
 </body>
 </html>

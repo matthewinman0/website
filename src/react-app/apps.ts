@@ -7,8 +7,8 @@ export type WebApp = {
 
 export const apps: WebApp[] = [
   {
-    name: "Map Generator",
-    description: "Placeholder",
+    name: "Open-Street-O-Map",
+    description: "A style of Open street map that looks like an orienteering map",
     url: "/apps/mapgen",
     tags: ["maps", "web"]
   }
