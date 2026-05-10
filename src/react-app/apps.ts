@@ -9,7 +9,7 @@ export const apps: WebApp[] = [
   {
     name: "Open-Street-O-Map",
     description: "A style of Open street map that looks like an orienteering map",
-    url: "/apps/mapgen",
+    url: "https://osom.matthewinman.uk/",
     tags: ["maps", "web"]
   }
 ]
